@@ -1,2 +1,2 @@
-# DOM-Javascript
-In this repo, we'll talk about one of the most fundamental topics in Javascript, the Document Object Model. You can star it as a repo with all the information about the DOM.
+# DOM-Document Object Model
+Bu repoda biz Javascriptdə ən əsas mövzulardan biri olan Document Object Model haqqında danışacıq. DOM haqqında bütün məlumatların olduğu repo kimi starlaya bilərsiniz.
