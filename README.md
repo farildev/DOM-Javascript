@@ -1,8 +1,5 @@
 # DOM-Document Object Model
 Bu repoda biz Javascriptdə ən əsas mövzulardan biri olan Document Object Model haqqında danışacıq. DOM haqqında bütün məlumatların olduğu repo kimi starlaya bilərsiniz.
-
-## Sənəd Obyekt Modeli (DOM)
-
 HTML sənədi JavaScript Obyekti kimi strukturlaşdırılmışdır. Hər bir HTML elementi onu manipulyasiya etməyə kömək edə biləcək fərqli xüsusiyyətlərə malikdir. JavaScript istifadə edərək HTML elementlərini əldə etmək, yaratmaq, əlavə etmək və ya silmək mümkündür. JavaScript istifadə edərək HTML elementinin seçilməsi CSS-dən istifadə etməklə seçilməyə bənzəyir. HTML elementini seçmək üçün biz teq adı, id, sinif adı və ya digər atributlardan istifadə edirik.
 
 ### Element əldə etmək
