@@ -462,3 +462,279 @@ HTML yaratdıqdan sonra element və ya elementləri silmək istəyə bilərik v�
 ```
 
 Yuxarıdakı kod parçası bütün uşaq elementləri təmizlədi.
+
+
+### Event Listeners
+
+Ümumi HTML hadisələri: onclick, onchange, onmouseover, onmouseout, onkeydown, onkeyup, onload.
+İstənilən DOM obyektinə eventListener metodu əlavə edə bilərik. HTML elementlərində müxtəlif hadisə növlərini dinləmək üçün **_addEventListener()_** metodundan istifadə edirik. _addEventListener()_ metodu iki arqument götürür, eventListener və callback funksiya.
+
+```js
+selectedElement.addEventListener('eventlistner', function(e) {
+  // hadisədən sonra həyata keçirmək istədiyiniz fəaliyyət burada olacaq
+})
+// or
+
+selectedElement.addEventListener('eventlistner', e => {
+  // hadisədən sonra həyata keçirmək istədiyiniz fəaliyyət burada olacaq
+})
+```
+
+#### Click
+
+Event Listener elementə əlavə etmək üçün əvvəlcə elementi seçirik, sonra addEventListener metodunu əlavə edirik. Event Listener arqument kimi hadisə növünü(click) və callback funksiyalarını qəbul edir. Mouse-a klik etdiyimiz zaman hansısa hadisəni çalışdırmaq üçün istifadə edilir.
+
+Aşağıda "click" növü hadisəsinə nümunə verilmişdir.
+
+**Nümunə: click**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model</title>
+  </head>
+
+  <body>
+    <button>Click Me</button>
+
+    <script>
+      const button = document.querySelector('button')
+      button.addEventListener('click', e => {
+        console.log('e gives the event listener object:', e)
+        console.log('e.target gives the selected element: ', e.target)
+        console.log(
+          'e.target.textContent gives content of selected element: ',
+          e.target.textContent
+        )
+      })
+    </script>
+  </body>
+</html>
+```
+
+Hadisə birbaşa HTML elementinə daxili skript kimi əlavə edilə bilər.
+
+**Nümunə: onclick**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model</title>
+  </head>
+
+  <body>
+    <button onclick="clickMe()">Click Me</button>
+    <script>
+      const clickMe = () => {
+        alert('We can attach event on HTML element')
+      }
+    </script>
+  </body>
+</html>
+```
+
+#### Double Click
+
+Event Listener-i elementə əlavə etmək üçün əvvəlcə elementi seçirik, sonra addEventListener metodunu əlavə edirik. Event Listener arqument kimi hadisə növünü və callback funksiyalarını qəbul edir. Bu metod adından göründüyü kimi mouse-a iki dəfə (double) klik etdiyimiz zaman işə düşür. 
+
+Aşağıda "double click" növü hadisəsinə nümunə verilmişdir.
+
+**Nümunə: dblclick**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model</title>
+  </head>
+
+  <body>
+    <button>Click Me</button>
+    <script>
+      const button = document.querySelector('button')
+      button.addEventListener('dblclick', e => {
+        console.log('e gives the event listener object:', e)
+        console.log('e.target gives the selected element: ', e.target)
+        console.log(
+          'e.target.textContent gives content of selected element: ',
+          e.target.textContent
+        )
+      })
+    </script>
+  </body>
+</html>
+```
+
+#### Mouse Enter
+
+Event Listener-i elementə əlavə etmək üçün əvvəlcə elementi seçirik, sonra addEventListener metodunu əlavə edirik. Event Listener arqument kimi hadisə növünü və callback funksiyalarını qəbul edir. Sizin bir 'div' elementiniz olduğunu fərz edin və mouse-un kursoru bu 'div' elementinin içinə daxil olduqda, funksiyamız çalışmağa başlayır. 
+
+**Nümunə: mouseenter**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model</title>
+  </head>
+
+  <body>
+    <button>Click Me</button>
+    <script>
+      const button = document.querySelector('button')
+      button.addEventListener('mouseenter', e => {
+        console.log('e gives the event listener object:', e)
+        console.log('e.target gives the selected element: ', e.target)
+        console.log(
+          'e.target.textContent gives content of selected element: ',
+          e.target.textContent
+        )
+      })
+    </script>
+  </body>
+</html>
+```
+
+İndi siz addEventListen metodu ilə tanışsınız və event listener necə əlavə etmək olar. Event Listener-lərin bir çox növləri var. Ancaq bu dərsdə biz ən vacib hadisələrə diqqət yetirəcəyik.
+Event-lərin siyahısı:
+
+- click - element kliklədikdə
+- dblclick - element iki dəfə kliklədikdə
+- mouseenter - siçan nöqtəsi elementə daxil olduqda
+- mouseleave - siçan göstəricisi elementi tərk etdikdə
+- mousemove - siçan göstəricisi element üzərində hərəkət etdikdə
+- mouseover - siçan göstəricisi element üzərində hərəkət etdikdə
+- mouseout - siçan göstərici elementdən kənara çıxdıqda
+- input - dəyər giriş sahəsinə daxil olduqda
+- change - giriş sahəsində dəyər dəyişdikdə
+- blur - element fokuslanmadıqda
+- keydown - düymə aşağı olduqda
+- keyup - açar yuxarı olduqda
+- keypress - istənilən düyməni basdığımız zaman
+- onload - brauzer səhifəni yükləməyi bitirdikdə
+
+### İnput elementindən dəyər əldə etmək
+
+Biz adətən formaları doldururuq və formalar məlumatları qəbul edir. Forma sahələri daxiletmə HTML elementindən istifadə etməklə yaradılır. İki giriş sahəsi, bir düymə və bir p etiketindən istifadə edərək insanın bədən kütləsi indeksini hesablamağa imkan verən kiçik bir proqram quraq.
+
+### input dəyəri
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event Listeners</title>
+  </head>
+
+  <body>
+    <h1>Body Mass Index Calculator</h1>
+
+    <input type="text" id="mass" placeholder="Mass in Kilogram" />
+    <input type="text" id="height" placeholder="Height in meters" />
+    <button>Calculate BMI</button>
+
+    <script>
+      const mass = document.querySelector('#mass')
+      const height = document.querySelector('#height')
+      const button = document.querySelector('button')
+
+      let bmi
+      button.addEventListener('click', () => {
+        bmi = mass.value / height.value ** 2
+        alert(`your bmi is ${bmi.toFixed(2)}`)
+        console.log(bmi)
+      })
+    </script>
+  </body>
+</html>
+```
+
+#### Input event və dəyişiklik(change)
+
+Yuxarıdakı misalda düyməni basaraq iki input sahəsindən input dəyərləri əldə edə bildik. Düyməni basmadan dəyər əldə etmək istəsək necə olar? Sahə focus olduqda, dərhal input sahəsindən məlumat əldə etmək üçün _change_ və ya _input_ hadisə növündən istifadə edə bilərik.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+  </head>
+
+  <body>
+    <h1>Data Binding using input or change event</h1>
+
+    <input type="text" placeholder="say something" />
+    <p></p>
+
+    <script>
+      const input = document.querySelector('input')
+      const p = document.querySelector('p')
+
+      input.addEventListener('input', e => {
+        p.textContent = e.target.value
+      })
+    </script>
+  </body>
+</html>
+```
+
+#### Blur event
+
+_input_ və ya _change_-dən fərqli olaraq, _blur_ hadisəsi giriş sahəsi fokusda olmadıqda baş verir.
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+</head>
+
+<body>
+    <h1>Giving feedback using blur event</h1>
+
+    <input type="text" id="mass" placeholder="say something" />
+    <p></p>
+
+    <script>
+        const input = document.querySelector('input')
+        const p = document.querySelector('p')
+
+        input.addEventListener('blur', (e) => {
+            p.textContent = 'Field is required'
+            p.style.color = 'red'
+
+        })
+    </script>
+</body>
+
+</html>
+```
+
+#### keypress, keydow and keyup
+
+Biz müxtəlif event listener tiplərindən istifadə edərək klaviaturanın bütün əsas nömrələrinə daxil ola bilərik. Klaviaturadan istifadə edək və hər bir klaviatura düyməsinin açar kodunu əldə edək.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+  </head>
+
+  <body>
+    <h1>Key events: Press any key</h1>
+
+    <script>
+      document.body.addEventListener('keypress', e => {
+        alert(e.keyCode)
+      })
+    </script>
+  </body>
+</html>
+```
+
+
+ARTIQ TAM OLARAQ HAZIRIQ! Bütün əsas məlumatlara sahibik və artıq çalışmalıyıq!
