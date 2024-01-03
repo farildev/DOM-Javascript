@@ -68,3 +68,63 @@ for (let i = 0; i < allTitles.length; i++) {
   console.log(allTitles[i]) // prints each elements in the HTMLCollection
 }
 ```
+
+#### Sinif adına görə elementlərin alınması
+
+**_getElementsByClassName()_** metodu HTMLCollection obyektini qaytarır. HTMLCollection HTML elementlərinin siyahısı kimi massivdir. Uzunluq xüsusiyyəti kolleksiyanın ölçüsünü təmin edir. Bütün HTMLCollection elementləri arasında dövrə vurmaq mümkündür. Aşağıdakı nümunəyə baxın.
+
+```js
+//syntax
+document.getElementsByClassName('classname')
+```
+
+```js
+const allTitles = document.getElementsByClassName('title')
+
+console.log(allTitles) //HTMLCollections
+console.log(allTitles.length) // 4
+
+for (let i = 0; i < allTitles.length; i++) {
+  console.log(allTitles[i]) // prints each elements in the HTMLCollection
+}
+```
+
+#### Elementi id ilə əldə etmək
+
+**_getElementsById()_** tək HTML elementini hədəfləyir. Arqument olaraq id-i # olmadan keçirik.
+
+```js
+//syntax
+document.getElementById('id')
+```
+
+```js
+let firstTitle = document.getElementById('first-title')
+console.log(firstTitle) // <h1>First Title</h1>
+```
+
+#### QuerySelector metodlarından istifadə etməklə elementlərin alınması
+
+_document.querySelector_ metodu HTML və ya HTML elementlərini etiket adına, id və ya sinif adına görə seçə bilər.
+
+**_querySelector_**: HTML elementini teq adı, id və ya sinfi ilə seçmək üçün istifadə edilə bilər. Teq adı istifadə edilərsə, yalnız birinci elementi seçir.
+
+```js
+let firstTitle = document.querySelector('h1') // select the first available h1 element
+let firstTitle = document.querySelector('#first-title') // select id with first-title
+let firstTitle = document.querySelector('.title') // select the first available element with class title
+```
+
+**_querySelectorAll_**: html elementlərini teq adı və ya sinfi ilə seçmək üçün istifadə edilə bilər. O, massiv metodlarını dəstəkləyən massiv kimi obyekt olan nodeList-i qaytarır. Hər nodeList elementləri arasında dövr etmək üçün **_for loop_** və ya **_forEach_** istifadə edə bilərik.
+
+```js
+const allTitles = document.querySelectorAll('h1') # selects all the available h1 elements in the page
+
+console.log(allTitles.length) // 4
+for (let i = 0; i < allTitles.length; i++) {
+  console.log(allTitles[i])
+}
+
+allTitles.forEach(title => console.log(title))
+const allTitles = document.querySelectorAll('.title') // the same goes for selecting using class
+```
