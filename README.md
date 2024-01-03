@@ -297,3 +297,171 @@ titles.forEach((title, i) => {
 Qeyd etdiyiniz kimi, JavaScript-də istifadə etdiyimiz zaman css-in xassələri camelCase olacaq. Aşağıdakı CSS xassələri fon rəngindən backgroundColor-a, font-size fontSize-ə, font-family fontFamily-ə, margin-bottom-dan marginBottom-a dəyişir.
 
 Okay, mənim canavar tələbələrim, siz demək olarki, DOM-da elementlər haqqında hər məlumata sahibsiniz. Növbəti dərslər daha da maraqlı olacaq :D. DOM Manipulyasiyası və EventListener-lar ilə daha üst səviyyəyə çıxacağıq.
+
+
+## DOM Manipulation(Document Object Model)
+
+### Elementin yaradılması
+
+HTML elementi yaratmaq üçün etiket adından istifadə edirik. JavaScript-dən istifadə edərək HTML elementinin yaradılması çox sadə və sadədir. Biz _document.createElement()_ metodundan istifadə edirik. Metod sətir parametri kimi HTML element teq adını alır.
+
+```js
+// syntax
+document.createElement('tagname')
+```
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+</head>
+
+<body>
+
+    <script>
+        let title = document.createElement('h1')
+        title.className = 'title'
+        title.style.fontSize = '24px'
+        title.textContent = 'Creating HTML element DOM Day 2'
+
+        console.log(title)
+    </script>
+</body>
+
+</html>
+```
+
+### Elementlərin yaradılması
+
+Bir neçə element yaratmaq üçün loopdan istifadə etməliyik. Döngüdən istifadə edərək, istədiyimiz qədər HTML elementi yarada bilərik.
+Elementi yaratdıqdan sonra HTML obyektinin müxtəlif xüsusiyyətlərinə dəyər təyin edə bilərik.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+</head>
+
+<body>
+
+    <script>
+        let title
+        for (let i = 0; i < 3; i++) {
+            title = document.createElement('h1')
+            title.className = 'title'
+            title.style.fontSize = '24px'
+            title.textContent = i
+            console.log(title)
+        }
+    </script>
+</body>
+
+</html>
+```
+
+### Uşağın ana elementə əlavə edilməsi(Append metodu)
+
+HTML sənədində yaradılmış elementi görmək üçün onu ana elementə uşaq element kimi əlavə etməliyik. Biz *document.body* istifadə edərək HTML sənədinin gövdəsinə daxil ola bilərik. *document.body* *appendChild()* metodunu dəstəkləyir. Aşağıdakı nümunəyə baxın.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+</head>
+
+<body>
+
+    <script>
+        // creating multiple elements and appending to parent element
+        let title
+        for (let i = 0; i < 3; i++) {
+            title = document.createElement('h1')
+            title.className = 'title'
+            title.style.fontSize = '24px'
+            title.textContent = i
+            document.body.appendChild(title)
+        }
+    </script>
+</body>
+</html>
+```
+
+### Ana qovşaqdan(Parent Node) uşaq elementin(child element) çıxarılması
+
+HTML yaratdıqdan sonra element və ya elementləri silmək istəyə bilərik və biz *removeChild()* metodundan istifadə edə bilərik.
+
+**Nümunə:**
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+</head>
+
+<body>
+    <h1>Removing child Node</h1>
+    <h2>Asabeneh Yetayeh challenges in 2020</h1>
+    <ul>
+        <li>30DaysOfPython Challenge Done</li>
+        <li>30DaysOfJavaScript Challenge Done</li>
+        <li>30DaysOfReact Challenge Coming</li>
+        <li>30DaysOfFullStack Challenge Coming</li>
+        <li>30DaysOfDataAnalysis Challenge Coming</li>
+        <li>30DaysOfReactNative Challenge Coming</li>
+        <li>30DaysOfMachineLearning Challenge Coming</li>
+    </ul>
+
+    <script>
+        const ul = document.querySelector('ul')
+        const lists = document.querySelectorAll('li')
+        for (const list of lists) {
+            ul.removeChild(list)
+
+        }
+    </script>
+</body>
+
+</html>
+```
+
+Əvvəlki bölmədə gördüyümüz kimi, *innerHTML* xassələri metodundan istifadə edərək bütün daxili HTML elementlərini və ya ana elementin uşaqlarını aradan qaldırmağın daha yaxşı yolu var.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+</head>
+
+<body>
+    <h1>Removing child Node</h1>
+    <h2>Asabeneh Yetayeh challenges in 2020</h1>
+    <ul>
+        <li>30DaysOfPython Challenge Done</li>
+        <li>30DaysOfJavaScript Challenge Done</li>
+        <li>30DaysOfReact Challenge Coming</li>
+        <li>30DaysOfFullStack Challenge Coming</li>
+        <li>30DaysOfDataAnalysis Challenge Coming</li>
+        <li>30DaysOfReactNative Challenge Coming</li>
+        <li>30DaysOfMachineLearning Challenge Coming</li>
+    </ul>
+
+    <script>
+        const ul = document.querySelector('ul')
+        ul.innerHTML = ''
+    </script>
+</body>
+
+</html>
+```
+
+Yuxarıdakı kod parçası bütün uşaq elementləri təmizlədi.
